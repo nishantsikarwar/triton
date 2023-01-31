@@ -9,7 +9,7 @@ jobs:
   Runner-Preparation:
     runs-on: ubuntu-latest
     outputs:
-      matrix: '${{ steps.set-matrix.outputs.matrix }}'
+      matrix: '${{ toJSON(steps.set-matrix.outputs.matrix) }}'
     steps:
       - name: Prepare runner matrix
         id: set-matrix
