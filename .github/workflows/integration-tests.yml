@@ -9,7 +9,7 @@ jobs:
   Runner-Preparation:
     runs-on: ubuntu-latest
     outputs:
-      matrix: '${{ toJSON(steps.set-matrix.outputs.matrix) }}'
+      matrix: '${{ steps.set-matrix.outputs.matrix }}'
     steps:
       - name: Prepare runner matrix
         id: set-matrix
@@ -24,7 +24,7 @@ jobs:
     runs-on: '${{ matrix.runner }}'
     strategy:
       matrix:
-        runner: '${{fromJSON(needs.Runner-Preparation.outputs.matrix)}}'
+        runner: '${{ needs.Runner-Preparation.outputs.matrix }}'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
